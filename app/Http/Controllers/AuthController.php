@@ -13,6 +13,9 @@ use App\Models\Citizen;
  */
 class AuthController extends Controller
 {
+
+    protected $redirectPath = '/';
+
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */

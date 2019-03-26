@@ -45,13 +45,3 @@ Route::group(['middleware' => ['guest:citizen']], function () {
     Route::get('activate-2fa', ['as' => 'activate_2fa', 'uses' => 'AuthController@activate2fa']);
     Route::post('activate-2fa', ['as' => 'activate_2fa', 'uses' => 'AuthController@postActivate2fa']);
 });
-
-Route::get('/home', function(){
-    if(\Auth::guard('government')->check()){
-        return redirect()->route('government.dashboard');
-    }elseif(\Auth::guard('citizen')->check()){
-        return redirect()->route('government.dashboard');
-    }else{
-        return redirect()->route('notloggedin');
-    }
-});

@@ -14,6 +14,8 @@ use App\Models\GovernmentAdmin;
  */
 class AuthController extends Controller
 {
+    protected $redirectPath = '/';
+
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
