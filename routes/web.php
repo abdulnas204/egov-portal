@@ -1,16 +1,57 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Auth::routes(); // Adds the routes needed for authentication (multi login)
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['prefix' => 'government', 'as' => 'government.', 'namespace' => 'Government'], function () {
+    Route::group(['middleware' => ['auth:government']], function () {
+        Route::get('/', ['as' => 'index', function () {
+            return redirect()->route('government.dashboard');
+        }]);
+
+        Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
+        Route::get('logout', ['as' => 'auth.logout', 'uses' => 'AuthController@logout']);
+    });
+
+    Route::group(['middleware' => ['guest:government']], function () {
+
+        Route::get('/', ['as' => 'index', function () {
+            return redirect()->route('government.login');
+        }]);
+
+        Route::get('login', ['as' => 'login', 'uses' => 'AuthController@login']);
+        Route::post('login', ['as' => 'login', 'uses' => 'AuthController@authenticate']);
+        Route::get('activate-2fa', ['as' => 'activate_2fa', 'uses' => 'AuthController@activate2fa']);
+        Route::post('activate-2fa', ['as' => 'activate_2fa', 'uses' => 'AuthController@postActivate2fa']);
+    });
+});
+
+Route::group(['middleware' => ['auth:citizen']], function () {
+    Route::get('/', ['as' => 'index', function () {
+        return redirect()->route('dashboard');
+    }]);
+
+    Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
+    Route::get('logout', ['as' => 'auth.logout', 'uses' => 'AuthController@logout']);
+});
+
+Route::group(['middleware' => ['guest:citizen']], function () {
+	Route::get('/', function () {
+		$seo_title = __('titles.notloggedin');
+        return view('notloggedin', compact('seo_title'));
+    })->name('notloggedin');
+    
+    Route::get('login', ['as' => 'login', 'uses' => 'AuthController@login']);
+    Route::post('login', ['as' => 'login', 'uses' => 'AuthController@authenticate']);
+    Route::get('activate-2fa', ['as' => 'activate_2fa', 'uses' => 'AuthController@activate2fa']);
+    Route::post('activate-2fa', ['as' => 'activate_2fa', 'uses' => 'AuthController@postActivate2fa']);
+});
+
+Route::get('/home', function(){
+    if(\Auth::guard('government')->check()){
+        return redirect()->route('government.dashboard');
+    }elseif(\Auth::guard('citizen')->check()){
+        return redirect()->route('government.dashboard');
+    }else{
+        return redirect()->route('notloggedin');
+    }
 });

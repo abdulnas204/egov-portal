@@ -46,6 +46,16 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+
+        'government' => [
+            'driver' => 'session',
+            'provider' => 'government_admin',
+        ],
+
+        'citizen' => [
+            'driver' => 'session',
+            'provider' => 'citizen',
+        ]
     ],
 
     /*
@@ -69,6 +79,16 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
+        ],
+
+        'government_admin' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\GovernmentAdmin::class,
+        ],
+
+        'citizen' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Citizen::class,
         ],
 
         // 'users' => [

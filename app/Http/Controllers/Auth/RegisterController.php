@@ -55,6 +55,18 @@ class RegisterController extends Controller
         ]);
     }
 
+    
+
+    public function showRegistrationForm()
+    {
+        return redirect()->route('login');
+    }
+
+    public function register()
+    {
+
+    }
+
     /**
      * Create a new user instance after a valid registration.
      *
