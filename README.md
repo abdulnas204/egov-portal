@@ -1,4 +1,4 @@
-<p align="center"><img src="http://lostisland.org/wp-content/uploads/2017/07/For-Favicon-4.png"></p>
+<p align="center"><img src="http://lostisland.org/wp-content/uploads/2017/07/For-Favicon-4.png" width="150"></p>
 
 ## About eGov Portal
 eGov Portal is the eGovernment Portal of the Federal Republic of Lostisland. It is responsible for the handling of all affairs with the citizens (members) of Lostisland. Some quick points on eGov Portal:
