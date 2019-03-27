@@ -8,6 +8,12 @@ Route::group(['prefix' => 'government', 'as' => 'government.', 'namespace' => 'G
             return redirect()->route('government.dashboard');
         }]);
 
+        Route::resource('officials', 'GovernmentAdminsController');
+        Route::post('officials/{official}/changepassword', ['as' => 'officials.changepassword', 'uses' => 'GovernmentAdminsController@editPassword']);
+
+        Route::resource('citizens', 'CitizensController');
+        Route::post('citizens/{citizen}/changepassword', ['as' => 'citizens.changepassword', 'uses' => 'CitizensController@editPassword']);
+
         Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
         Route::get('logout', ['as' => 'auth.logout', 'uses' => 'AuthController@logout']);
     });

@@ -14,7 +14,7 @@ class AddCountryAndGenderToCitizen extends Migration
     public function up()
     {
         Schema::table('citizen', function (Blueprint $table) {
-           $table->unsignedBigInteger('country_id');
+           $table->unsignedBigInteger('country_id')->default(1);
             $table->foreign('country_id')->references('id')->on('country');
             $table->enum('gender', ['M','F'])->default('M');
         });

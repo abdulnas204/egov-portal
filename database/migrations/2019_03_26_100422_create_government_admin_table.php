@@ -17,7 +17,7 @@ class CreateGovernmentAdminTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('password');
-            $table->string('auth_token');
+            $table->string('auth_token')->default('');
             $table->string('full_name');
             $table->string('position_name');
             $table->integer('role');

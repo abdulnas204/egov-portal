@@ -28,6 +28,7 @@ class Citizen extends Authenticatable
         'email',
         'status',
         'active',
+        'gender',
     ];
 
     protected $encryptable = [
@@ -46,5 +47,10 @@ class Citizen extends Authenticatable
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
     }
 }

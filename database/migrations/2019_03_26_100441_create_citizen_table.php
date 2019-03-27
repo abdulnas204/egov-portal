@@ -16,9 +16,8 @@ class CreateCitizenTable extends Migration
         Schema::create('citizen', function (Blueprint $table) {
             $table->increments('id');
             $table->longText('identifier');
-            $table->string('name');
             $table->string('password');
-            $table->string('auth_token');
+            $table->string('auth_token')->default('');
             $table->string('last_name');
             $table->string('first_name');
             $table->date('date_of_birth');

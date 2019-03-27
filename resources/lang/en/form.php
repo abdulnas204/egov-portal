@@ -10,5 +10,9 @@ return [
 	'buttons'		=> [
 		"login"			=>	"Secure login",
 		"activate"		=>	"Activate 2FA",
+		"add"			=> 	"Add",
+		"show"			=>	"Show",
+		"edit"			=>	"Edit",
+		"save"			=> 	"Save",
 	],
 ];
