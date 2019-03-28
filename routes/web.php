@@ -14,6 +14,15 @@ Route::group(['prefix' => 'government', 'as' => 'government.', 'namespace' => 'G
         Route::resource('citizens', 'CitizensController');
         Route::post('citizens/{citizen}/changepassword', ['as' => 'citizens.changepassword', 'uses' => 'CitizensController@editPassword']);
 
+        Route::resource('voting', 'VotingController', ['except' => 'show']);
+        Route::get('voting/{vote}/options', ['as' => 'voting.options.index', 'uses' => 'VotingController@optionsIndex']);
+        Route::get('voting/{vote}/options/create', ['as' => 'voting.options.create', 'uses' => 'VotingController@optionsCreate']);
+        Route::post('voting/{vote}/options', ['as' => 'voting.options.store', 'uses' => 'VotingController@optionsStore']);
+        Route::get('voting/{vote}/options/{option}/edit', ['as' => 'voting.options.edit', 'uses' => 'VotingController@optionsEdit']);
+        Route::put('voting/{vote}/options/{option}', ['as' => 'voting.options.update', 'uses' => 'VotingController@optionsUpdate']);
+        Route::get('voting/{vote}/options/{option}/destroy', ['as' => 'voting.options.destroy', 'uses' => 'VotingController@optionsDestroy']);
+        Route::get('voting/{vote}/votes', ['as' => 'voting.votes.index', 'uses' => 'VotingController@votesIndex']);
+
         Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
         Route::get('logout', ['as' => 'auth.logout', 'uses' => 'AuthController@logout']);
     });
@@ -32,12 +41,18 @@ Route::group(['prefix' => 'government', 'as' => 'government.', 'namespace' => 'G
 });
 
 Route::group(['middleware' => ['auth:citizen']], function () {
+
     Route::get('/', ['as' => 'index', function () {
         return redirect()->route('dashboard');
     }]);
 
+    Route::get('voting', ['as' => 'voting.index', 'uses' => 'VotingController@index']);
+    Route::get('voting/{vote}', ['as' => 'voting.vote', 'uses' => 'VotingController@show']);
+    Route::post('voting/{vote}/store', ['as' => 'voting.store', 'uses' => 'VotingController@store']);     
+
     Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
     Route::get('logout', ['as' => 'auth.logout', 'uses' => 'AuthController@logout']);
+
 });
 
 Route::group(['middleware' => ['guest:citizen']], function () {

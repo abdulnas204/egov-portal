@@ -6,6 +6,10 @@ use App\Requests\AuthenticateRequest;
 use App\Requests\TwoFactorRequest;
 use App\Models\Citizen;
 
+use Illuminate\Http\Request;
+use Auth;
+use Hash;
+
 /**
  * Class AuthController
  *
@@ -121,4 +125,5 @@ class AuthController extends Controller
 
         return back()->withErrors(['validation.2fa.invalid']);
     }
+
 }

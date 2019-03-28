@@ -36,6 +36,10 @@ class GovernmentAdmin extends Authenticatable
         'auth_token',
     ];
 
+    protected $casts = [
+        'active' => 'boolean',
+    ];
+
     /**
      * @param $value
      */

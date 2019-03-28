@@ -14,5 +14,11 @@ return [
 		"show"			=>	"Show",
 		"edit"			=>	"Edit",
 		"save"			=> 	"Save",
+		"options"		=> 	"View options",
+		"results"		=> 	"View results",
+		"back"			=> 	"Back",
+		"destroy"		=>	"Delete",
+		"vote"			=>	"Vote",
+		"view"			=>	"View",
 	],
 ];
