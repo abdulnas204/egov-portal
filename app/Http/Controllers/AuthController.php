@@ -78,7 +78,7 @@ class AuthController extends Controller
     {
         auth('citizen')->logout();
 
-        return redirect()->route('login');
+        return redirect()->route('notloggedin');
     }
 
     /**
