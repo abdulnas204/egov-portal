@@ -4,11 +4,20 @@ body{
 .bg-primary{
 	 background-color: #3230a0 !important;
 }
+.bg-secondary{
+    background-color: #C7CCD1 !important;
+}
 
 .bd-navbar{
 	min-height: 4rem;
 	background-color: #3230a0 !important;
 	box-shadow: 0 .5rem 1rem rgba(0,0,0,.05),inset 0 -1px 0 rgba(0,0,0,.1);
+}
+
+.bd-logo{
+    font-weight: 600; 
+    font-size: 1.9rem; 
+    padding-top: 12px;
 }
 
 @media (max-width:991.98px) {
@@ -29,6 +38,16 @@ body{
         overflow-x: auto;
         white-space: nowrap;
         -webkit-overflow-scrolling: touch
+    }
+
+    .bd-logo{
+        padding-top: 0px;
+    }
+
+    .bd-login{
+        position: absolute;
+        top: 20px;
+        right: 10px;
     }
 }
 

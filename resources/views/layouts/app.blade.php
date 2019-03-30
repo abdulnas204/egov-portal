@@ -10,7 +10,7 @@
         <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css">
         <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=cyrillic,cyrillic-ext,latin-ext" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="/css/styles.css">
+        <link rel="stylesheet" type="text/css" href="/css/styles.css?v=1">
         @yield('styles')
         
         <title>{{ ( isset($seo_title) ? $seo_title : "" ) . " | e-Gov Lostisland" }}</title>
@@ -23,8 +23,13 @@
         @auth("citizen")
             @include('layouts.navigation.citizen')
         @endauth
+        @if(View::hasSection('notloggedinmenu'))
+            @include('layouts.navigation.notloggedin')
+        @endif
 
-        <div class="container-fluid py-3">
+        @if(!View::hasSection('notloggedinmenu'))
+            <div class="container-fluid py-3">
+        @endif
             @auth("government")
                 @include('layouts.message')
             @endauth
@@ -32,7 +37,9 @@
                 @include('layouts.message')
             @endauth
             @yield('content')
-        </div>
+        @if(!View::hasSection('notloggedinmenu'))
+            </div>
+        @endif
 
         @auth("government")
             @include('layouts.footer')
@@ -40,6 +47,9 @@
         @auth("citizen")
             @include('layouts.footer')
         @endauth
+        @if(View::hasSection('notloggedinmenu'))
+            @include('layouts.footer')
+        @endif
 
         <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -48,7 +58,7 @@
         <script type="text/javascript" src="//cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
         <script type="text/javascript" src="//cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
-        <script type="text/javascript" src="/js/scripts.js"></script>
+        <script type="text/javascript" src="/js/scripts.js?v=1"></script>
         @yield('scripts')
     </body>
 </html>

@@ -17,7 +17,7 @@
             {{Auth::user()->first_name}} {{Auth::user()->last_name}} ({{Auth::user()->identifier}})
         </li>
     </ul>
-    <a class="btn btn-bd-download d-none d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="/government/logout">
+    <a class="btn btn-bd-download d-none d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="/logout">
         <i class="fas fa-sign-out-alt"></i> Logout
     </a>
 </header>
