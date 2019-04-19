@@ -1,5 +1,5 @@
 <header class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
-    <a class="navbar-brand mr-0 mr-md-2" href="/" aria-label="Bootstrap">
+    <a class="navbar-brand mr-0 mr-md-2" href="/government" aria-label="Bootstrap">
         <img src="http://lostisland.org/wp-content/uploads/2017/07/For-Favicon-4.png" width="50"><br>
     </a>
     <div class="navbar-nav-scroll">
