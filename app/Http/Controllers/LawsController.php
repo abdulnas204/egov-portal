@@ -49,8 +49,6 @@ class LawsController extends Controller
             $laws = Law::all();
         }
 
-        var_dump($laws);exit;
-
         return view('law.table', compact('laws'));
     }
 
