@@ -35,12 +35,17 @@
 		</div>
 	</div>
 
+	<div id="alert" class="d-none alert alert-secondary position-fixed fa-3x" style="left: calc(50% - 263px); top:250px;">
+		<i class="fas fa-sync fa-spin"></i> Results are loading
+	</div>
+
 @endsection
 
 @section('scripts')
 
 <script type="text/javascript">
 	function filterLaws(){
+		$('#alert').toggleClass('d-none');
 		$.post( "/lex/ajax", { 
             status: $('#type').val(),
             year: $('#year').val(),
@@ -48,6 +53,7 @@
         })
         .done(function( data ) {
         	$('#laws').html(data);
+			$('#alert').toggleClass('d-none');
         });
 	}
 </script>
