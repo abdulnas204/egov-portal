@@ -13,9 +13,9 @@
 					<a class="btn btn-success mr-2" href="/login">
 						<i class="fas fa-shield-alt"></i> Citizen login
 					</a>
-					{{-- <a class="btn btn-warning" href="/lex">
+					<a class="btn btn-warning" href="/lex">
 						<i class="fas fa-gavel"></i> Lostislandic laws
-					</a> --}}
+					</a>
 				</div>
 				<div class="col-12 col-md-4">
 				</div>

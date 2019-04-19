@@ -16,6 +16,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="/government/voting">Voting</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/government/laws">Laws</a>
+            </li>
         </ul>
     </div>
     <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">

@@ -22,6 +22,9 @@ Route::group(['prefix' => 'government', 'as' => 'government.', 'namespace' => 'G
         Route::put('voting/{vote}/options/{option}', ['as' => 'voting.options.update', 'uses' => 'VotingController@optionsUpdate']);
         Route::get('voting/{vote}/options/{option}/destroy', ['as' => 'voting.options.destroy', 'uses' => 'VotingController@optionsDestroy']);
         Route::get('voting/{vote}/votes', ['as' => 'voting.votes.index', 'uses' => 'VotingController@votesIndex']);
+        
+        Route::resource('laws', 'LawsController');
+        Route::get('laws/{law}/pdf', ['as' => 'laws.pdf', 'uses' => 'LawsController@pdf']);
 
         Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
         Route::get('logout', ['as' => 'auth.logout', 'uses' => 'AuthController@logout']);
@@ -60,6 +63,10 @@ Route::group(['middleware' => ['guest:citizen']], function () {
 		$seo_title = __('titles.notloggedin');
         return view('notloggedin', compact('seo_title'));
     })->name('notloggedin');
+
+    Route::get('/lex', ['as' => 'lex.overview', 'uses' => 'LawsController@index']);
+    Route::get('/lex/{id}/{slug}/show', ['as' => 'lex.show', 'uses' => 'LawsController@show']);
+    Route::get('/lex/{id}/{slug}/pdf', ['as' => 'lex.pdf', 'uses' => 'LawsController@pdf']);
     
     Route::get('login', ['as' => 'login', 'uses' => 'AuthController@login']);
     Route::post('login', ['as' => 'login', 'uses' => 'AuthController@authenticate']);

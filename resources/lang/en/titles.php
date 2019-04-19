@@ -13,6 +13,10 @@ return [
 		"index"			=>	"List of Votings",
 		"show"			=>	"Vote on :Name",
 	],
+	'law'			=>	[
+		'index'			=>	"Overview | Laws",
+		'show'			=>	"Viewing :Name  | Laws",
+	],
 
 	'government'	=> [
 		"login"			=>	"Verify Government Registration",
@@ -28,6 +32,12 @@ return [
 			'show'			=>	"Profile of :Name  | Citizens",
 			'edit'			=>	"Edit profile of :Name  | Citizens",
 			'create'		=>	"New profile  | Citizens",
+		],
+		'law'			=>	[
+			'index'			=>	"Overview | Laws",
+			'show'			=>	"Viewing :Name  | Laws",
+			'edit'			=>	"Editing :Name  | Laws",
+			'create'		=>	"New | Laws",
 		],
 		'voting'			=>	[
 			'index'			=>	"Overview | Voting",
