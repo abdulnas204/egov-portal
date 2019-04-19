@@ -14,5 +14,6 @@ class Law extends Model
         'name',
         'top',
         'body',
+        'bottom',
     ];
 }
