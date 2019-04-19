@@ -44,7 +44,7 @@ class LawsController extends Controller
         }
 
         if(null !== $laws){
-            $laws->get();
+            $laws = $laws->get();
         }else{
             $laws = Law::all();
         }
