@@ -43,13 +43,14 @@
             </div>
         @endif
 
-        @auth("government")
-            @include('layouts.footer')
-        @endauth
-        @auth("citizen")
-            @include('layouts.footer')
-        @endauth
-        @if(View::hasSection('notloggedinmenu'))
+        @if(!View::hasSection('notloggedinmenu'))
+            @auth("government")
+                @include('layouts.footer')
+            @endauth
+            @auth("citizen")
+                @include('layouts.footer')
+            @endauth
+        @else
             @include('layouts.footer')
         @endif
 
