@@ -65,6 +65,7 @@ Route::group(['middleware' => ['guest:citizen']], function () {
     })->name('notloggedin');
 
     Route::get('/lex', ['as' => 'lex.overview', 'uses' => 'LawsController@index']);
+    Route::post('/lex/ajax', ['as' => 'lex.ajax', 'uses' => 'LawsController@ajax']);
     Route::get('/lex/{id}/{slug}/show', ['as' => 'lex.show', 'uses' => 'LawsController@show']);
     Route::get('/lex/{id}/{slug}/pdf', ['as' => 'lex.pdf', 'uses' => 'LawsController@pdf']);
     

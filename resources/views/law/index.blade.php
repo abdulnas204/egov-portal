@@ -4,41 +4,52 @@
 
 @section('content')
 	
-	<div class="container">
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Status</th>
-					<th>Date published</th>
-					<th></th>
-				</tr>
-			</thead>
-			@foreach($laws as $law)
-				<tr>
-					<td>{{$law->name}}</td>
-					<td>
-						@if($law->status == "decree")
-        					<span class="badge badge-success">Presidential decree</span>
-        				@elseif($law->status == "order")
-        					<span class="badge badge-warning">Government order</span>
-                        @elseif($law->status == "ordinance")
-                            <span class="badge badge-info">Ministerial ordinance</span>
-                        @else
-                            <span class="badge badge-secondary">Constitutional act</span>
-        				@endif
-					</td>
-					<td>{{ strftime('%B %e, %Y', strtotime($law->created_at)) }}</td>
-					<td>
-						<a href="{{route('lex.show', [$law->id, Illuminate\Support\Str::slug($law->name, '-')])}}" class="btn btn-info">
-        					<i class="fas fa-eye"></i> {{__('form.buttons.show')}}
-        				</a>
-                        <a href="{{route('lex.pdf', [$law->id, Illuminate\Support\Str::slug($law->name, '-')])}}" class="btn btn-secondary">
-                            <i class="fas fa-file-pdf"></i> {{__('form.buttons.show')}}
-                        </a>
-					</td>
-				</tr>
-			@endforeach
-		</table>
+	<div class="container py-4">
+		<h1>Laws of the Federal Republic of Lostisland</h1>
+		<div class="row mt-2">
+			<div class="col-4">
+				<select id="type" class="form-control">
+					<option>Choose a type</option>
+					<option value="*">All</option>
+					<option value="decree">Presidential decrees</option>
+					<option value="order">Government order</option>
+					<option value="ordinance">Ministerial ordinance</option>
+					<option value="constitution">Constitutional act</option>
+				</select>
+			</div>
+			<div class="col-4">
+				<select id="year" class="form-control">
+					<option>Year of issuing</option>
+					<option value="*">All</option>
+					@for($y=2016;$y<=intval(date('Y'));$y++)
+						<option value="{{$y}}">{{$y}}</option>
+					@endfor
+				</select>
+			</div>
+			<div class="col-4">
+				<button onclick="filterLaws();" class="btn btn-success"><i class="fas fa-search"></i> Filter results</button>
+			</div>
+		</div>
+		<div id="laws" class="mt-5">
+			<small>Please use the filters...</small>
+		</div>
 	</div>
+
+@endsection
+
+@section('scripts')
+
+<script type="text/javascript">
+	function filterLaws(){
+		$.post( "/lex/ajax", { 
+            status: $('#type').val(),
+            year: $('#year').val(),
+            _token: '{{ csrf_token() }}' 
+        })
+        .done(function( data ) {
+        	$('#laws').html(data);
+        });
+	}
+</script>
+
 @endsection
