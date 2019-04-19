@@ -18,14 +18,15 @@
     </head>
     <body class="@yield('body_class')">
 
-        @auth("government")
-            @include('layouts.navigation.government')
-        @endauth
-        @auth("citizen")
-            @include('layouts.navigation.citizen')
-        @endauth
         @if(View::hasSection('notloggedinmenu'))
             @include('layouts.navigation.notloggedin')
+        @else
+            @auth("government")
+                @include('layouts.navigation.government')
+            @endauth
+            @auth("citizen")
+                @include('layouts.navigation.citizen')
+            @endauth
         @endif
 
         @if(!View::hasSection('notloggedinmenu'))
